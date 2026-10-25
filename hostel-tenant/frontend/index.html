@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Hostel Chain — Rooms & Tenants</title>
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="logo">🏠</span>
+      <div>
+        <h1>Hostel Chain</h1>
+        <p>Rooms · Tenants · Rent on a local blockchain</p>
+      </div>
+    </div>
+    <div class="top-actions">
+      <span id="netBadge" class="badge">connecting…</span>
+    </div>
+  </header>
+
+  <section class="stats">
+    <div class="stat"><span>Rooms</span><strong id="stRooms">–</strong></div>
+    <div class="stat"><span>Occupied</span><strong id="stOccupied">–</strong></div>
+    <div class="stat"><span>Collected rent</span><strong id="stBalance">–</strong></div>
+    <div class="stat"><span>Block</span><strong id="stBlock">–</strong></div>
+  </section>
+
+  <nav class="tabs">
+    <button class="tab active" data-tab="rooms">Rooms</button>
+    <button class="tab" data-tab="payments">Rent log</button>
+    <button class="tab" data-tab="manage">Manage</button>
+  </nav>
+
+  <main>
+    <section id="tab-rooms" class="panel active">
+      <div class="hint">
+        Acting as <strong id="actorLabel">–</strong>
+        <select id="actor"></select>
+      </div>
+      <div id="roomGrid" class="grid">Loading…</div>
+    </section>
+
+    <section id="tab-payments" class="panel">
+      <div class="card">
+        <div class="card-head">
+          <h2>Rent payments on chain</h2>
+          <button class="btn small ghost" id="refreshPay">Refresh</button>
+        </div>
+        <table class="table">
+          <thead><tr><th>Block</th><th>Room</th><th>Payer</th><th>Amount (ETH)</th><th>Months paid</th><th>Tx</th></tr></thead>
+          <tbody id="payRows"><tr><td colspan="6">Loading…</td></tr></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="tab-manage" class="panel">
+      <div class="grid">
+        <div class="card">
+          <h2>Add a room <small>(owner)</small></h2>
+          <label>Monthly rent (ETH)</label>
+          <input id="newRent" placeholder="0.05" />
+          <button class="btn primary" id="addRoomBtn">Add room</button>
+        </div>
+        <div class="card">
+          <h2>Assign a tenant <small>(owner)</small></h2>
+          <label>Room</label>
+          <select id="assignRoom"></select>
+          <label>Tenant wallet</label>
+          <select id="assignTenant"></select>
+          <label>Tenant name</label>
+          <input id="assignName" placeholder="Full name" />
+          <button class="btn primary" id="assignBtn">Assign</button>
+        </div>
+        <div class="card">
+          <h2>Node accounts</h2>
+          <table class="table">
+            <thead><tr><th>Address</th><th>ETH</th></tr></thead>
+            <tbody id="accRows"><tr><td colspan="2">Loading…</td></tr></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="toast" class="toast"></div>
+  <footer class="footer">
+    <span id="contractLabel">Contract: –</span>
+    <span id="ownerLabel">Owner: –</span>
+  </footer>
+
+  <script src="/vendor/ethers.umd.min.js"></script>
+  <script src="/app.js"></script>
+</body>
+</html>

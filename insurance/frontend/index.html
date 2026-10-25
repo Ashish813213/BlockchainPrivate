@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Insurance Chain</title>
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <header><div><span class="logo">🛡</span><h1>Insurance Chain</h1><p>Simple policies and claims on a local blockchain</p></div><span id="net" class="badge">connecting…</span></header>
+  <section class="stats"><div><span>Policies</span><strong id="count">–</strong></div><div><span>Pool balance</span><strong id="balance">–</strong></div><div><span>Block</span><strong id="block">–</strong></div></section>
+  <main>
+    <section class="card"><h2>Buy a policy</h2><label>Policy holder</label><select id="holder"></select><label>Premium (ETH)</label><input id="premium" value="0.01" /><label>Coverage (ETH)</label><input id="coverage" value="0.10" /><button id="buy">Buy policy</button></section>
+    <section class="card"><h2>Policies and claims</h2><div id="policies">Loading…</div></section>
+    <section class="card"><h2>Owner funding</h2><p class="hint">The local node owner can send ETH to the contract from the Hardhat console before approving a claim.</p><code>await (await owner.sendTransaction({ to: contractAddress, value: ethers.parseEther("1") })).wait()</code></section>
+  </main>
+  <div id="toast"></div>
+  <script src="/app.js"></script>
+</body>
+</html>

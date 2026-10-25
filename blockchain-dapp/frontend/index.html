@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Chain DApp — Token & Voting</title>
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="logo">⛓</span>
+      <div>
+        <h1>Chain DApp</h1>
+        <p>Hardhat local chain · Solidity contracts · Express API</p>
+      </div>
+    </div>
+    <div class="top-actions">
+      <span id="netBadge" class="badge">connecting…</span>
+      <button id="walletBtn" class="btn ghost">Connect Wallet</button>
+    </div>
+  </header>
+
+  <section class="stats" id="stats">
+    <div class="stat"><span>Block</span><strong id="statBlock">–</strong></div>
+    <div class="stat"><span>Chain ID</span><strong id="statChain">–</strong></div>
+    <div class="stat"><span>Token supply</span><strong id="statSupply">–</strong></div>
+    <div class="stat"><span>Proposals</span><strong id="statProposals">–</strong></div>
+    <div class="stat"><span>Total votes</span><strong id="statVotes">–</strong></div>
+  </section>
+
+  <nav class="tabs">
+    <button class="tab active" data-tab="token">Token</button>
+    <button class="tab" data-tab="voting">Voting</button>
+    <button class="tab" data-tab="accounts">Accounts</button>
+    <button class="tab" data-tab="contracts">Contracts</button>
+  </nav>
+
+  <main>
+    <section id="tab-token" class="panel active">
+      <div class="grid">
+        <div class="card">
+          <h2>Check balance</h2>
+          <label>Address</label>
+          <input id="balAddr" placeholder="0x…" />
+          <button class="btn" id="balBtn">Look up</button>
+          <div class="result" id="balResult">Enter an address to see its balances.</div>
+        </div>
+
+        <div class="card">
+          <h2>Transfer tokens</h2>
+          <label>From <small>(node account)</small></label>
+          <select id="transferFrom"></select>
+          <label>To</label>
+          <input id="transferTo" placeholder="0x…" />
+          <label>Amount</label>
+          <input id="transferAmount" placeholder="100" />
+          <button class="btn primary" id="transferBtn">Send</button>
+        </div>
+
+        <div class="card wide">
+          <h2>Mint tokens <small>(owner only)</small></h2>
+          <div class="row">
+            <input id="mintTo" placeholder="recipient 0x…" />
+            <input id="mintAmount" placeholder="500" />
+            <button class="btn" id="mintBtn">Mint</button>
+          </div>
+        </div>
+
+        <div class="card wide">
+          <div class="card-head">
+            <h2>Recent transfers</h2>
+            <button class="btn ghost small" id="refreshTransfers">Refresh</button>
+          </div>
+          <table class="table">
+            <thead><tr><th>Block</th><th>From</th><th>To</th><th>Amount</th><th>Tx</th></tr></thead>
+            <tbody id="transferRows"><tr><td colspan="5">Loading…</td></tr></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section id="tab-voting" class="panel">
+      <div class="grid">
+        <div class="card wide">
+          <div class="card-head">
+            <h2>Proposals</h2>
+            <span class="muted" id="voteAccount"></span>
+          </div>
+          <div id="proposalList" class="proposals">Loading…</div>
+        </div>
+        <div class="card wide">
+          <h2>Create proposal <small>(owner only)</small></h2>
+          <div class="row">
+            <input id="propTitle" placeholder="Title" />
+            <input id="propDesc" placeholder="Description" />
+            <button class="btn" id="propBtn">Create</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="tab-accounts" class="panel">
+      <div class="card wide">
+        <div class="card-head">
+          <h2>Local node accounts</h2>
+          <span class="muted">Click a row to use it as sender</span>
+        </div>
+        <table class="table">
+          <thead><tr><th>Account</th><th>ETH</th><th>Token</th><th></th></tr></thead>
+          <tbody id="accountRows"><tr><td colspan="4">Loading…</td></tr></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="tab-contracts" class="panel">
+      <div class="grid">
+        <div class="card">
+          <h2>ChainToken</h2>
+          <dl class="kv"><dt>Address</dt><dd id="ctAddr">–</dd><dt>Name</dt><dd id="ctName">–</dd>
+          <dt>Symbol</dt><dd id="ctSym">–</dd><dt>Owner</dt><dd id="ctOwner">–</dd></dl>
+        </div>
+        <div class="card">
+          <h2>Poll</h2>
+          <dl class="kv"><dt>Address</dt><dd id="pollAddr">–</dd><dt>Deployer</dt><dd id="pollOwner">–</dd>
+          <dt>Deployed</dt><dd id="pollDate">–</dd></dl>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="toast" class="toast"></div>
+
+  <footer class="footer">
+    <span id="modeLabel">Mode: backend API</span>
+    <span id="accountLabel">No account selected</span>
+  </footer>
+
+  <script src="/vendor/ethers.umd.min.js"></script>
+  <script src="/app.js"></script>
+</body>
+</html>

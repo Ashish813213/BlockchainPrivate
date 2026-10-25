@@ -1,0 +1,22 @@
+{
+  "name": "hostel-tenant",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Hostel room & tenant management on a local blockchain: Solidity contract + Express API + web UI",
+  "scripts": {
+    "compile": "hardhat compile",
+    "node": "hardhat node",
+    "deploy": "hardhat run scripts/deploy.js --network localhost",
+    "backend": "node backend/server.js",
+    "start": "node backend/server.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "ethers": "^6.13.4",
+    "express": "^4.21.2"
+  },
+  "devDependencies": {
+    "@nomicfoundation/hardhat-ethers": "^3.0.8",
+    "hardhat": "^2.26.0"
+  }
+}
