@@ -1,6 +1,6 @@
 # Blockchain Projects
 
-This repository contains two runnable local-blockchain demonstrations built with
+This repository contains three runnable local-blockchain demonstrations built with
 Solidity, Hardhat, ethers.js, Express, and plain HTML/CSS/JavaScript.
 
 ## Projects
